@@ -19,7 +19,10 @@ class Main
      */
     public static function runSimply(array $coins, string $menu): string
     {
-        return "do implementation";
+        DrinkMenu: $drinkMenu = new DrinkMenu([new Cora()]);
+        VendingMachine: $vendingMachine = new VendingMachine($drinkMenu);
+
+        return $vendingMachine -> calculateChange($coins, $menu);
     }
 
     /**
