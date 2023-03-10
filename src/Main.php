@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+require_once 'DrinkMenu.php';
+require_once 'VendingMachine.php';
+
 /**
  * メインクラス。
  * 原則ここにロジックは書かないこと。
@@ -19,10 +22,15 @@ class Main
      */
     public static function runSimply(array $coins, string $menu): string
     {
-        DrinkMenu: $drinkMenu = new DrinkMenu([new Cora()]);
+        DrinkMenu: $drinkMenu = new DrinkMenu([
+            new Drink("cola", 120),
+            new Drink("coffee", 150),
+            new Drink("energy_drink", 210),
+        ]);
+
         VendingMachine: $vendingMachine = new VendingMachine($drinkMenu);
 
-        return $vendingMachine -> calculateChange($coins, $menu);
+        return $vendingMachine -> outputChange($coins, $menu);
     }
 
     /**
